@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js" ></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css"/>
+    <meta charset="UTF-8" />
+    <title>Simple example</title>
+  
+  <style>
+    .table td, .table th
+    {
+        padding:0.25rem;
+    }
+    .table{
+        width:	100%;
+        table-layout: fixed;
+        font-size:12px;
+    }
+    .table , .table td, .table th
+        {
+            border:1px solid black !important;
+        }
+    .table0 , .table0 td, .table0 th
+        {
+            border:none !important;
+        }
+  </style>
+  </head>
+  <body>
+    <button onclick="generate()">Generate pdf</button>
+
+    <script src="libs/jspdf.umd.js"></script>
+    <script src="../dist/jspdf.plugin.autotable.js"></script>
+
+    <div id="container-fluid">
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12">
+                <table class="table table0" >
+                    <tr>
+                        <td colspan="4" rowspan="4">
+                            Logo goes here
+                        </td>
+                        <td colspan="1"></td>
+                        <td colspan="7">10 Bukit Batok Crescent #09-05 The Spire Singapore 658079</td>
+                    </tr>
+                    <tr>
+                        <td colspan="1"></td>
+                        <td colspan="3"> Tel: (65) 6238 8811</td>
+                        <td colspan="3">Tel: (65) 6238 8822</td>
+                        <td colspan="1"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="8"> <u class="float-right font-weight-bold font-italic">Private & Confidential</u></td>
+                    </tr>
+                    <tr>
+                        <td colspan="8"> <u class="text-uppercase font-weight-bold">Application For Employment</u></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-12">
+                <table class="table  table1">
+                    <colgroup><col width="11%"><col width="11%"><col width="11%"><col width="11%"><col width="11%"><col width="11%"><col width="11%"><col width="11%"><col width="11%"></colgroup>
+                    <!--<thead><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></thead>-->
+                    <tbody>
+                    <tr>
+                        <td colspan="3" class="text-uppercase" >post applied for :</td>
+                        <td colspan="3">Application in response to (please tick)</td>
+                        <td colspan="3" class="text-uppercase text-center align-middle" rowspan="3">recent photograph</td>
+                    </tr>
+                    <tr>
+                        <td class="text-uppercase text-center font-weight-bold" colspan="6">applicant's particulars</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="text-capitalize">
+                            full name (mr/mrs/mdm/miss)<br/>
+                            <pre>Please underline surname. If married, also state maiden name.</pre>
+                        </td>
+                        <td colspan="3">Enter name in Chinese character where applicable</td>
+                    </tr>
+                    <tr>
+                        <td colspan="6">Home Address</td>
+                        <td colspan="3" rowspan="2" class="text-capitalize">
+                            <p>telephone number</p>
+                            <p>mobile : </p>
+                            <p>home : </p>
+                            <p>email : </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6">Postal Address (if diffrent from above)</td>
+                    </tr>
+                    <tr>
+                        <td colspan="9">
+                            <p>Emergency Contact</p>
+                            <div class="row">
+                                <div class="col-4"><u>Name</u></div>
+                                <div class="col-4"><u>Relationship</u></div>
+                                <div class="col-4"><u>Contact Number</u></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">Nationality</td>
+                        <td colspan="5" rowspan="2">
+                            <span style="margin-right:50px">Are you a Permanent Resident of Singapore?</span>YES/NO<br/><br/>
+                            If yes, please state date of issue:
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Identity Card No (last 3 digit with alphabet)</td>
+                        <td colspan="2">Date of Birth</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Gender</td>
+                        <td colspan="2">Country of Birth</td>
+                        <td colspan="2">Race</td>
+                        <td colspan="3">Religion</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">Marital Status<br/>Single / Married / Divorced / Widowed</td>
+                        <td colspan="5">
+                            Driving License<br/>
+                            Class 2 / 3 / 4 / 5
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="9">Please give details of family</td>
+                    </tr>
+                    <tr class="text-center">
+                        <td colspan="2">Name</td>
+                        <td >Relationship</td>
+                        <td >Age</td>
+                        <td colspan="5">Occupation/Name of Company</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"></td>
+                        <td></td>
+                        <td></td>
+                        <td colspan="5"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"></td>
+                        <td></td>
+                        <td></td>
+                        <td colspan="5"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"></td>
+                        <td></td>
+                        <td></td>
+                        <td colspan="5"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="9">
+                            <p class="text-uppercase font-weight-bold">full time national service record</p>
+                            <br/>
+                            <span style="margin-right:200px;">Have you completed full time National Service?</span><span>YES/ NO /N.A</span>
+                        </td>
+                    </tr>
+                    <tr class="text-center">
+                        <td>Date Enlisted</td>
+                        <td>Date Discharged</td>
+                        <td>Type of Service</td>
+                        <td colspan="6">Highest Rank Held</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td colspan="6"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="9" class="text-center">
+                            <p class="font-weight-bold">EDUCATION</p>
+                            <p>List schools/tertiary institutions attended in chronological order</p>
+                        </td>
+                    </tr>
+                    <tr class="text-center">
+                        <td colspan="2">Schools/Institution Attended</td>
+                        <td colspan="3">Heighest Standard Passed</td>
+                        <td colspan="4">Year Attained (from/to)</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"></td>
+                        <td colspan="3"></td>
+                        <td colspan="4"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"></td>
+                        <td colspan="3"></td>
+                        <td colspan="4"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"></td>
+                        <td colspan="3"></td>
+                        <td colspan="4"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="9" class="text-center">
+                            <p class="font-weight-bold">OTHER QUALIFICATIONS RELEVANT TO THE POSITION YOU ARE APPLYING</p>
+                            <p>Typing/Shorthand/Secretarial/Technical Certificates or Diplomas/University/Degrees</p>
+                        </td>
+                    </tr>
+                    <tr class="text-center">
+                        <td colspan="2">Certificate / Diploma / Degree</td>
+                        <td colspan="3">Date Qualification Obtained</td>
+                        <td colspan="4">Institution</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"></td>
+                        <td colspan="3"></td>
+                        <td colspan="4"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"></td>
+                        <td colspan="3"></td>
+                        <td colspan="4"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"></td>
+                        <td colspan="3"></td>
+                        <td colspan="4"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="9">
+                            If you are currently pursuing a course, please provide us with the details;<br/>
+                            (eg: Course / Institution / Date of Examination)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="9">
+                            <span class="font-weight-bold">AWARDS/ SCHOLARSHIPS : </span><span>Please indicate years of award, period of bond (if any) and the bonding authority</span>
+                        </td>
+                    </tr>
+                    <tr class="text-center">
+                        <td></td>
+                        <td colspan="4">SPOKEN</td>
+                        <td colspan="4">WRITTEN</td>
+                    </tr>
+                    <tr class="text-center">
+                        <td>Languages/Dialects</td>
+                        <td>Excellent</td>
+                        <td>Good</td>
+                        <td>Fair</td>
+                        <td>Poor</td>
+                        <td>Excellent</td>
+                        <td>Good</td>
+                        <td>Fair</td>
+                        <td>Poor</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="9">
+                            <span class="font-weight-bold">EXTRA-CURRICULAR ACTIVITIES</span><br/>
+                            <span>(Please state hobbies/sport/membership of clubs/societies)</span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <center><b>EMPLOYMENT HISTORY</b></center>
+                <p><b>PRESENT APPOINMENT</b></p>
+                <table class="table  table2">
+                    <colgroup><col width="20%"><col width="20%"><col width="20%"><col width="20%"><col width="20%"></colgroup>
+                    <tbody>
+                        <tr>
+                            <td colspan="1" rowspan="2">Post</td>
+                            <td colspan="2">
+                                From<br/>
+                                To
+                            </td>
+                            <td colspan="2">
+                                Earliest available date
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Present Salary<br/>
+                            (Please specify allowance(s) if any)</td>
+                            <td colspan="2">
+                                Expected Salary
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="5">Name of Employer :</td>
+                        </tr>
+                        <tr>
+                            <td colspan="5">Address of Employer :</td>
+                        </tr>
+                        <tr>
+                            <td colspan="5">Reason for leaving :</td>
+                        </tr>
+                        <tr>
+                            <td colspan="5"><p class="font-weight-bold text-uppercase">Previous appointments</p></td>
+                        </tr>
+                        <tr class="text-center">
+                            <td>Name of Employer(s)</td>
+                            <td>Position</td>
+                            <td>Duration</td>
+                            <td>Basic Salary</td>
+                            <td>Reason for Leaving</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="5"><p class="font-weight-bold text-uppercase">Character referees</p>
+                            <p>Name 2 person whom you reported to in your previous job</p></td>
+                        </tr>
+                        <tr class="text-center">
+                            <td colspan="2">Name</td>
+                            <td>Position</td>
+                            <td>Years Known</td>
+                            <td>Contact Number</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="5"><span style="margin-right:450px">May we contact your previous employers?</span><span>YES / NO</span></td>
+                        </tr>
+                        <tr>
+                            <td colspan="5"><span style="margin-right:165px">Do you have any relatives or friends presently working in our group of companies?</span><span>YES / NO</span>
+                            <br/><p>If yes, please give details:</p></td>
+                        </tr>
+                        <tr class="text-center">
+                            <td colspan="2">Name</td>
+                            <td>Appoinment</td>
+                            <td>Department</td>
+                            <td>Relationship</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="5"><span style="margin-right:704px">Is any of your relatives or close friends currently working in the wholesale & retail industry e.g watch,pens,fashion business or in departmental store?</span><span>YES / NO</span>
+                            <br/><p>If YES, please state details</p></td>
+                        </tr>
+                        <tr class="text-center">
+                            <td colspan="2">Name of family member</td>
+                            <td>Appoinment</td>
+                            <td>Department</td>
+                            <td>Name of Company</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table  table3">
+                    <tbody>
+                        <tr>
+                            <td colspan="12">
+                                <center><b><p class="text-uppercase">other information</p></b></center>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="12">
+                                <center><b><p class="text-uppercase">please answer the following question. if the answer are yes, please give details</p></b></center>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="8">1. Have you ever been convicted in a court of law of any country?</td>
+                            <td colspan="4">YES / NO</td>
+                        </tr>
+                        <tr>
+                            <td colspan="8">2. Have you ever been dismissed, discharged or suspended from employemnt?</td>
+                            <td colspan="4">YES / NO</td>
+                        </tr>
+                        <tr>
+                            <td colspan="8">3. Have you ever had, or are you suffering from any impairment/disease/mental illness/medical condition?</td>
+                            <td colspan="4">YES / NO</td>
+                        </tr>
+                        <tr>
+                            <td colspan="8">4. Have you ever had any surgical operation previously?</td>
+                            <td colspan="4">YES / NO</td>
+                        </tr>
+                        <tr>
+                            <td colspan="8">5. Are you bankrupt?</td>
+                            <td colspan="4">YES / NO</td>
+                        </tr>
+                        <tr>
+                            <td colspan="8">6. Are you in debt?</td>
+                            <td colspan="4">YES / NO</td>
+                        </tr>
+                        <tr>
+                            <td colspan="8">7. Have you previously submitted an application for an appoinment in this Company?</td>
+                            <td colspan="4">YES / NO</td>
+                        </tr>
+                        <tr>
+                            <td colspan="8">8. Have you tried any of our services before?(DR HAACH,HAACH, NATRAHEA)</td>
+                            <td colspan="4">YES / NO</td>
+                        </tr>
+                        <tr>
+                            <td colspan="8">9. For female applicant, please declare if you are conceiving at the date of application.</td>
+                            <td colspan="4">YES / NO</td>
+                        </tr>
+                        <tr>
+                            <td colspan="12"> Notes:<br/>
+                                <p style="margin-left:50px;">
+                                    1. False particulars or supression of material facts will render you liable to disqualification and if appointed, to dismissal without notice.<br/>
+                                    2. Please enclose photocopies certificates / testimonials / National Service Record. Do not enclose originals.
+                                </p></td>
+                        </tr>
+                        <tr>
+                            <td colspan="6">Signature of Applicant:</td>
+                            <td colspan="6">Date:</td>
+                        </tr>
+                        <!--<tr>
+                            <td>
+                                <div class="row">
+                                    <div class="col-10"></div>
+                                    <div class="col-2"></div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-10"></div>
+                                    <div class="col-2">YES / NO</div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-10"></div>
+                                    <div class="col-2">YES / NO</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-10"></div>
+                                    <div class="col-2">YES / NO</div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-10"></div>
+                                    <div class="col-2">YES / NO</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-10"></div>
+                                    <div class="col-2">YES / NO</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-10"></div>
+                                    <div class="col-2">YES / NO</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-10"></div>
+                                    <div class="col-2">YES / NO</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-10"</div>
+                                    <div class="col-2">YES / NO</div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                               
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="row">
+                                    <div class="col-6">
+                                        
+                                    </div>
+                                    <div class="col-6">
+                                        
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>-->
+                    </tbody>
+                </table>
+            </div>
+        </div>  
+    </div>
+    </div>
+
+    <script>
+      function generate() {
+        var doc = new jspdf.jsPDF()
+
+
+        // Simple html example
+        doc.autoTable({ html: '.table0', theme: 'plain' });
+        doc.autoTable({ html: '.table1', theme: 'grid' });
+        doc.autoTable({ html: '.table2', theme: 'grid' });
+        doc.autoTable({ html: '.table3', theme: 'grid' });
+        
+
+        doc.save('table.pdf')
+      }
+    </script>
+  </body>
+</html>
