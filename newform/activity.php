@@ -153,9 +153,11 @@ if (!isset($_SESSION['email'])) {
             float: right;
             margin: 30px;
         }
+
         .even {
             color: #eda553;
         }
+      
     </style>
 </head>
 
@@ -173,7 +175,7 @@ if (!isset($_SESSION['email'])) {
         </div>
     </div>
     <div class="mx-4">
-    
+
         <?php
 
         $sql = "SELECT activities.*, users.username, applicants.applicant_first_name, applicants.applicant_last_name FROM `activities`
@@ -189,33 +191,37 @@ if (!isset($_SESSION['email'])) {
 
         ?>
         <div class="container">
+
             <ol type="1">
                 <?php if ($total_data > 0) {
                     $i = 0;
                     while ($row = mysqli_fetch_object($result)) {
                 ?>
-                    <li class="<?php if($i % 2 == 0) echo 'even'; else echo 'odd'; ?>">
-                        <?php
+                        <li class="<?php if ($i % 2 == 0) echo 'even';
+                                    else echo 'odd'; ?>">
+                            <?php
                             $message = $row->username;
-                            if($row->type == 'created') {
+                            if ($row->type == 'created') {
                                 $message .= " created $row->applicant_first_name as a user.";
+                                $message .= "<br>$row->created_at";
                             }
 
-                            if($row->type == 'updated') {
-                                if($row->field == 'pdf_link') {
+                            if ($row->type == 'updated') {
+                                if ($row->field == 'pdf_link') {
                                     $message .= " edited $row->applicant_first_name's image.";
                                 } else {
                                     $field = str_replace('applicant_', '', $row->field);
                                     $field = str_replace('_', ' ', $field);
 
                                     $message .= " edited $row->applicant_first_name's $field from  $row->before_value to $row->after_value.";
+                                    $message .= "<br>$row->created_at";
                                 }
                             }
 
                             echo $message;
                             $i++;
-                        ?>
-                    </li>
+                            ?>
+                        </li>
                 <?php }
                 } ?>
             </ol>

@@ -224,7 +224,10 @@ if (!isset($_SESSION['email'])) {
                                     <img src="uploads/img/<?php echo $row->pdf_link; ?>" height="50">
                                 </td>
                                 <td style="text-align: center;">
-                                    <a href="update-form.php?id=<?php echo $row->id; ?>" class="btn btn-info">Edit</a>
+                                    <div style="display: inline;">
+                                        <a href="update-form.php?id=<?php echo $row->id; ?>" class="btn btn-info ">Edit</a>
+                                        <a href="send-mail-user.php?id=<?php echo $row->id; ?>" class="btn btn-info mt-2">Send Mail</a>
+                                    </div>
                                 </td>
                             </tr>
                     <?php }

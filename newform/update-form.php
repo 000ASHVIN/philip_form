@@ -380,12 +380,13 @@ if(!isset($_SESSION['email'])){
         $admin_query = "select * from `users` where email='". $_SESSION['email'] ."' LIMIT 1";
         $result = mysqli_query($con, $admin_query);
         $admin = mysqli_fetch_object($result);
-
+        $time=  date('d-m-Y h:ia');
         $activity_queries = [];
         if($applicant && $admin) {
             $activity_query = "INSERT INTO activities SET
                 admin_id						= '$admin->id',
                 applicant_id					= '$applicant->id',
+                created_at                      = '$time',
                 type						= 'updated'";
 
             if($applicant->applicant_first_name != $applicant_first_name) {

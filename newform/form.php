@@ -340,11 +340,13 @@ if(!isset($_SESSION['email'])){
 			$query = "select * from `users` where email='". $_SESSION['email'] ."' LIMIT 1";
             $result = mysqli_query($con,$query);
             $admin = mysqli_fetch_object($result);
-
+			$time=  date('d-m-Y h:ia');
 			$activity_query = "INSERT INTO activities SET
 				admin_id						= '$admin->id',
 				applicant_id					= '$application_id',
+				created_at                     =  '$time',
 				type						= 'created'";
+				
 			mysqli_query($con, $activity_query);
 
 			echo '<script>alert("Form submitted successfully");window.location.href="list.php";</script>';
