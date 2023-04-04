@@ -5,12 +5,16 @@ include('config.php');
 if (!isset($_SESSION['email'])) {
     header('location:login.php');
 }
+
+if (!isset($_GET['id'])) {
+	header('location:list.php');
+}
 ?>
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title>List</title>
+    <title>Check In</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <!-- Latest compiled and minified CSS -->
@@ -153,6 +157,11 @@ if (!isset($_SESSION['email'])) {
             float: right;
             margin: 30px;
         }
+
+        .even {
+            color: #eda553;
+        }
+      
     </style>
 </head>
 
@@ -166,14 +175,17 @@ if (!isset($_SESSION['email'])) {
         <img src="logo/NH-Upload-Form-Background.jpg" alt="">
         <div class="description">
             <h4>NATRAHEA</h4>
-            <h5>Customers' Upload List</h5>
+            <h5>Customers' Check In List</h5>
         </div>
     </div>
     <div class="mx-4">
-        <a href="send-mail.php" class="btn btn-info mb-4" style="float: right;">Send Mail</a>
+
         <?php
 
-        $sql = "select * from applicants";
+        $sql = "SELECT entries.*, applicants.applicant_first_name, applicants.applicant_last_name FROM `entries`
+                JOIN applicants on applicants.id = entries.applicant_id
+                ORDER BY entries.id DESC;";
+
         $result = mysqli_query($con, $sql);
 
         $total_data = mysqli_num_rows($result);
@@ -181,60 +193,25 @@ if (!isset($_SESSION['email'])) {
         $dir = str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']);
 
         ?>
-        <div class="">
-            <table id="myTable" class="table table-bordered table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Company Designation</th>
-                        <th scope="col">Address</th>
-                        <th scope="col">Postal Code</th>
-                        <th scope="col">Email Address</th>
-                        <th scope="col">Date Of Birth</th>
-                        <th scope="col">Mobile Number</th>
-                        <th scope="col">Personal interests</th>
-                        <th scope="col">Notes</th>
-                        <th scope="col">Image</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php if ($total_data > 0) {
-                        while ($row = mysqli_fetch_object($result)) {
-                    ?>
-                            <tr>
-                                <td><?php echo $row->applicant_full_name ?></td>
-                                <td><?php echo $row->applicant_company_designation ?></td>
-                                <td><?php echo $row->applicant_address ?></td>
-                                <td><?php echo $row->applicant_postal_code ?></td>
-                                <td><?php echo $row->applicant_email_address ?></td>
-                                <td><?php echo $row->applicant_date_of_birth ?></td>
-                                <td><?php echo $row->mobile_number ?></td>
-                                <td>
-                                    <?php
-                                    $interest = explode(',', $row->personal_interest);
-                                    foreach ($interest as $val) {
-                                        echo $val . "<br>";
-                                    }
-                                    // echo $row->personal_interest;
-                                    ?>
-                                </td>
-                                <td><?php echo $row->applicant_notes ?></td>
-                                <td>
-                                    <img src="uploads/img/<?php echo $row->pdf_link; ?>" height="50">
-                                </td>
-                                <td style="text-align: center;">
-                                    <div style="display: inline;">
-                                        <a href="update-form.php?id=<?php echo $row->id; ?>" class="btn btn-info mt-2">Edit</a>
-                                        <a href="send-mail-user.php?id=<?php echo $row->id; ?>" class="btn btn-info mt-2">Send Mail</a>
-                                        <a href="log.php?id=<?php echo $row->id; ?>" class="btn btn-info mt-2">Log</a>
-                                    </div>
-                                </td>
-                            </tr>
-                    <?php }
-                    } ?>
-                </tbody>
-            </table>
+        <div class="container">
+
+            <ol type="1">
+                <?php if ($total_data > 0) {
+                    $i = 0;
+                    while ($row = mysqli_fetch_object($result)) {
+                ?>
+                        <li class="<?php if ($i % 2 == 0) echo 'even';
+                                    else echo 'odd'; ?>">
+                            <?php
+                            $message = "$row->applicant_first_name $row->applicant_last_name checked in at $row->check_in_time <br> IP address: $row->ip_address ";
+
+                            echo $message;
+                            $i++;
+                            ?>
+                        </li>
+                <?php }
+                } ?>
+            </ol>
         </div>
     </div>
 </body>

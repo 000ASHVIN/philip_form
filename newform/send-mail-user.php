@@ -5,6 +5,9 @@ include('config.php');
 if (!isset($_SESSION['email'])) {
     header('location:login.php');
 }
+if (!isset($_GET['id'])) {
+	header('location:list.php');
+}
 ?>
 <!DOCTYPE html>
 <html>
