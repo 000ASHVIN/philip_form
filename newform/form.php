@@ -193,7 +193,7 @@ if(!isset($_SESSION['email'])){
 					</div>
 				</div>
 
-				<div class="col-sm-6">
+				<!-- <div class="col-sm-6">
 					<div class="form-group">
 						<label><b>Personal interests</b></label>
 						<div class="form-check">
@@ -215,7 +215,7 @@ if(!isset($_SESSION['email'])){
 							</label>
 						</div>
 					</div>
-				</div>
+				</div> -->
 
 				<div class="col-sm-12">
 					<div class="form-group">
@@ -225,12 +225,8 @@ if(!isset($_SESSION['email'])){
 				</div>
 			</div>
 
-			<div class="row">
+			<!-- <div class="row">
 				<div class="col-sm-4">
-					<!-- <div class="form-group">
-						<label><b>PDF</b></label>
-						<div class="file-input"><input type="file" accept="application/pdf" class="form-control file-input__input" id="pdf" name="pdf" required><label class="file-input__label" for="pdf"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="upload" class="svg-inline--fa fa-upload fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M296 384h-80c-13.3 0-24-10.7-24-24V192h-87.7c-17.8 0-26.7-21.5-14.1-34.1L242.3 5.7c7.5-7.5 19.8-7.5 27.3 0l152.2 152.2c12.6 12.6 3.7 34.1-14.1 34.1H320v168c0 13.3-10.7 24-24 24zm216-8v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h136v8c0 30.9 25.1 56 56 56h80c30.9 0 56-25.1 56-56v-8h136c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z"></path></svg><span>Upload file</span></label></div>
-					</div> -->
 					<div class="form-group">
 						<label><b>Image</b></label>
 						<div class="file-input">
@@ -245,13 +241,13 @@ if(!isset($_SESSION['email'])){
 					</div>
 					<div id="img-name" class="alert alert-primary" style="display: none;"></div>
 				</div>
-			</div>
+			</div> -->
 
 			<div class="row">
 				<div class="col-sm-12">
 					<div class="form-group" style="display:flex;justify-content:space-between">
 						<div>
-							<button type="submit" class="btn btn-success" id="send_mail_preview" name="submit">Submit</button>
+							<!-- <button type="submit" class="btn btn-success" id="send_mail_preview" name="submit">Submit</button> -->
 						</div>
 						
 						
@@ -318,8 +314,13 @@ if(!isset($_SESSION['email'])){
 		$applicant_email_address = $_POST['applicant_email_address'];
 		$applicant_date_of_birth = $_POST['applicant_date_of_birth'];
 		$mobile_number = $_POST['mobile_number'];
-		$personal_interests = $_POST['personal_interest'];
-		$personal_interest = implode(",", $personal_interests);
+		$personal_interests = NULL;
+		if(isset($_POST['personal_interest'])){
+			$personal_interests = $_POST['personal_interest'];
+			if(count($personal_interests)) {
+				$personal_interest = implode(",", $personal_interests);
+			}
+		}
 		$applicant_notes = $_POST['applicant_notes'];
 		// $applicant_full_name = $_POST['applicant_full_name'];
 		// $mobile_number = $_POST['mobile_number'];
@@ -386,7 +387,7 @@ if(!isset($_SESSION['email'])){
             
             $result = mysqli_query($con, $query);
 
-			echo '<script>alert("Form submitted successfully");window.location.href="list.php";</script>';
+			echo '<script>alert("Customer Check In Successfully");window.location.href="entry.php";</script>';
 		}
 	}
 

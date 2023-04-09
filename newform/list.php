@@ -192,9 +192,9 @@ if (!isset($_SESSION['email'])) {
                         <th scope="col">Email Address</th>
                         <th scope="col">Date Of Birth</th>
                         <th scope="col">Mobile Number</th>
-                        <th scope="col">Personal interests</th>
+                        <!-- <th scope="col">Personal interests</th> -->
                         <th scope="col">Notes</th>
-                        <th scope="col">Image</th>
+                        <!-- <th scope="col">Image</th> -->
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -210,19 +210,18 @@ if (!isset($_SESSION['email'])) {
                                 <td><?php echo $row->applicant_email_address ?></td>
                                 <td><?php echo $row->applicant_date_of_birth ?></td>
                                 <td><?php echo $row->mobile_number ?></td>
-                                <td>
+                                <!-- <td>
                                     <?php
                                     $interest = explode(',', $row->personal_interest);
                                     foreach ($interest as $val) {
                                         echo $val . "<br>";
                                     }
-                                    // echo $row->personal_interest;
                                     ?>
-                                </td>
+                                </td> -->
                                 <td><?php echo $row->applicant_notes ?></td>
-                                <td>
+                                <!-- <td>
                                     <img src="uploads/img/<?php echo $row->pdf_link; ?>" height="50">
-                                </td>
+                                </td> -->
                                 <td style="text-align: center;">
                                     <div style="display: inline;">
                                         <a href="update-form.php?id=<?php echo $row->id; ?>" class="btn btn-info mt-2">Edit</a>

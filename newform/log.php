@@ -181,9 +181,10 @@ if (!isset($_GET['id'])) {
     <div class="mx-4">
 
         <?php
-
+        $id = $_GET['id'];
         $sql = "SELECT entries.*, applicants.applicant_first_name, applicants.applicant_last_name FROM `entries`
                 JOIN applicants on applicants.id = entries.applicant_id
+                WHERE applicant_id = $id
                 ORDER BY entries.id DESC;";
 
         $result = mysqli_query($con, $sql);

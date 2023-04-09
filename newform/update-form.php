@@ -204,7 +204,7 @@ if(!isset($_SESSION['email'])){
                             </div>
 
 
-                            <div class="col-sm-6">
+                            <!-- <div class="col-sm-6">
                                 <div class="form-group">
                                     <label><b>Personal interests</b></label>
 
@@ -246,7 +246,7 @@ if(!isset($_SESSION['email'])){
                                         </label>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <div class="col-sm-12">
                                 <div class="form-group">
@@ -256,7 +256,7 @@ if(!isset($_SESSION['email'])){
                             </div>
                         </div>
 
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <label><b>Image</b></label>
@@ -273,7 +273,7 @@ if(!isset($_SESSION['email'])){
                                 </div>
                                 <div id="img-name" class="alert alert-success" style="display: none;"></div>
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="row">
                             <div class="col-sm-12">
@@ -328,7 +328,15 @@ if(!isset($_SESSION['email'])){
         $applicant_date_of_birth = $_POST['applicant_date_of_birth'];
         $mobile_number = $_POST['mobile_number'];
         $personal_interests = $_POST['personal_interest'] ?? '';
-		$personal_interest = implode(",", $personal_interests) ?? '';
+		
+        $personal_interests = NULL;
+		if(isset($_POST['personal_interest'])){
+			$personal_interests = $_POST['personal_interest'];
+			if(count($personal_interests)) {
+				$personal_interest = implode(",", $personal_interests);
+			}
+		}
+        
         $applicant_notes = $_POST['applicant_notes'];
 
         $applicant_full_name = $applicant_first_name . ' ' . $applicant_last_name;
