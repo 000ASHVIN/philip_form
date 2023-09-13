@@ -2,8 +2,15 @@
 include('config.php');
 // error_reporting(E_ALL);
 // ini_set('display_errors', '1');
-if (!isset($_SESSION['email'])) {
-    // header('location:login.php');
+$created_by = 0;
+if(isset($_SESSION['email']) && $_SESSION['email']) {
+    $query = "select * from `users` where email='". $_SESSION['email'] ."' LIMIT 1";
+    $result = mysqli_query($con,$query);
+    $admin = mysqli_fetch_object($result);
+
+    if($admin) {
+        $created_by = $admin->id;
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -157,11 +164,8 @@ if (!isset($_SESSION['email'])) {
 </head>
 
 <body>
-    <div class="title">
-        <!-- <h4>NATRAHEA</h4> -->
-        <img src="logo/natrahea.jpg" alt="" style="max-width: 180px;">
-        <!-- <a href="logout.php" class="btn btn-primary logout">Logout</a> -->
-    </div>
+    <?php include('header.php'); ?>
+    
     <div class="header">
         <img src="logo/NH-Upload-Form-Background.jpg" alt="">
         <div class="description">
@@ -172,8 +176,12 @@ if (!isset($_SESSION['email'])) {
     <div class="mx-4">
         <!-- <a href="send-mail.php" class="btn btn-info mb-4" style="float: right;">Send Mail</a> -->
         <?php
-
-        $sql = "select * from applicants";
+        $where = "WHERE created_by IN ('0'";
+        if($created_by) {
+            $where .= ",'$created_by'";
+        }
+        $where .= ")";
+        $sql = "select * from applicants ".$where;
         $result = mysqli_query($con, $sql);
 
         $total_data = mysqli_num_rows($result);

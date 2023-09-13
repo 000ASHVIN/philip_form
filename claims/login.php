@@ -112,10 +112,8 @@ if(isset($_SESSION['email'])){
     <!-- <div class="header" style="background-image: url('logo/NH-Upload-Form-Background.png');"> -->
 
     <!-- </div> -->
-    <div class="title">
-        <!-- <h4>NATRAHEA</h4> -->
-        <img src="logo/natrahea.jpg" alt="" style="max-width: 180px;">
-    </div>
+    <?php include('header.php'); ?>
+    
     <div class="header">
         <img src="logo/NH-Upload-Form-Background.jpg" alt="">
         <div class="description">

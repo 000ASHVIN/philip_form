@@ -118,13 +118,7 @@ if(!isset($_SESSION['email'])){
 	<!-- <div class="header" style="background-image: url('logo/NH-Upload-Form-Background.png');"> -->
 
 	<!-- </div> -->
-
-		<div class="title">
-			<!-- <h4>NATRAHEA</h4> -->
-			<img src="logo/natrahea.jpg" alt="" style="max-width: 180px;">
-			<!-- <a href="logout.php" class="btn btn-primary logout">Logout</a> -->
-		</div>
-		
+	<?php include('header.php'); ?>
 	
 	<div class="header">
 		<img src="logo/NH-Upload-Form-Background.jpg" alt="">
@@ -304,7 +298,10 @@ if(!isset($_SESSION['email'])){
 	<script>
 		// $( function() {
 			$( ".datepicker" ).datepicker({
-				dateFormat: "dd-mm-yy"
+				dateFormat: "dd-mm-yy",
+				onSelect: function() {
+					storeFormData();
+				}
 			});
 		// } );
 		$("#img").change(function() {
@@ -381,6 +378,16 @@ if(!isset($_SESSION['email'])){
 		}
 
 		$time=  date('d-m-Y h:ia');
+		$created_by = 0;
+		if(isset($_SESSION['email']) && $_SESSION['email']) {
+			$query = "select * from `users` where email='". $_SESSION['email'] ."' LIMIT 1";
+            $result = mysqli_query($con,$query);
+            $admin = mysqli_fetch_object($result);
+
+			if($admin) {
+				$created_by = $admin->id;
+			}
+		}
 
 		$query = "INSERT INTO applicants SET
 			applicant_full_name						= '$applicant_full_name',
@@ -396,17 +403,18 @@ if(!isset($_SESSION['email'])){
 			category		        = '$category',
 			sub_category		        = '$sub_category',
 			link                                = '$img',
-			created_at		        = '$created_at',
-			updated_at		        = '$updated_at'";
+			created_by = '$created_by',
+			created_at		        = '$time',
+			updated_at		        = '$time'";
 
 		$flag = 1;
 		if ($flag == 1) {
 			$checkin = mysqli_query($con, $query);
-			if ($checkin) {
-				session_destroy();
-			} else {
-				echo "Error: " . mysqli_error($con);
-			}
+			// if ($checkin) {
+			// 	session_destroy();
+			// } else {
+			// 	echo "Error: " . mysqli_error($con);
+			// }
 			echo mysqli_error($con);
 			$application_id = mysqli_insert_id($con);
 
@@ -431,7 +439,7 @@ if(!isset($_SESSION['email'])){
             
             $result = mysqli_query($con, $query);
 
-			echo '<script>alert("Customer Check In Successfully");window.location.href="list.php";</script>';
+			echo '<script>sessionStorage.removeItem("form_data");alert("Customer Check In Successfully");window.location.href="list.php";</script>';
 		}
 	}
 
