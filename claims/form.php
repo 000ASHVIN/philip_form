@@ -276,8 +276,7 @@ if(!isset($_SESSION['email'])){
 					</div>
 				</div>
 			</div>
-
-			
+			<?php include('whatsaap.php');?>
 		</form>
 	</div>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" crossorigin="anonymous"></script>
