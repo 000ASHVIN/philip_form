@@ -200,7 +200,7 @@ if (!isset($_SESSION['email'])) {
                         <th scope="col">Date Submitted</th>
                         <th scope="col">Date Updated</th>
                         <th scope="col">Reciept</th>
-                        <!-- <th>Action</th> -->
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -233,6 +233,10 @@ if (!isset($_SESSION['email'])) {
                                         <a href="log.php?id=<?php echo $row->id; ?>" class="btn btn-info mt-2">Log</a>
                                     </div>
                                 </td> -->
+                                <td>
+                                     <a href="form-update.php?id=<?php echo $row->id; ?>" class="btn btn-primary" target="_blank">Update</a>
+                                </td>
+
                             </tr>
                     <?php }
                     } ?>
