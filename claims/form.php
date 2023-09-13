@@ -140,90 +140,88 @@ if(!isset($_SESSION['email'])){
 				<div class="col-sm-6">
 					<div class="form-group">
 						<label><b>Name</b></label>
-						<input type="text" class="form-control" name="applicant_first_name" required>
+						<input type="text" class="form-control" name="applicant_first_name" id="applicant_first_name" required oninput="storeFormData()">
 					</div>
 				</div>
 
-				<div class="col-sm-6">
-					<div class="form-group">
-						<label><b>Mobile Number</b></label>
-						<input type="text" class="form-control" name="mobile_number" required>
-					</div>
+			<div class="col-sm-6">
+				<div class="form-group">
+					<label><b>Mobile Number</b></label>
+					<input type="text" class="form-control" name="mobile_number" id="mobile_number" required oninput="storeFormData('mobile_number')">
 				</div>
+			</div>
 
-				<div class="col-sm-6">
-					<div class="form-group">
-						<label><b>Email Address</b></label>
-						<input type="email" class="form-control" name="applicant_email_address" required>
-					</div>
+			<div class="col-sm-6">
+				<div class="form-group">
+					<label><b>Email Address</b></label>
+					<input type="email" class="form-control" name="applicant_email_address" id="applicant_email_address" required oninput="storeFormData('applicant_email_address')">
 				</div>
-
-				<div class="col-sm-6">
-					<div class="form-group">
-						<label><b>Department</b></label>
-						<input type="text" class="form-control" name="applicant_department" required>
-					</div>
-				</div>
-
-				
-
-				<div class="col-sm-6">
-					<div class="form-group">
-						<label><b>Date of purchase</b></label>
-						<input type="text" class="form-control datepicker" name="date_of_purchase" required>
-					</div>
-				</div>
+			</div>
 
 
-				<div class="col-sm-6">
-					<div class="form-group">
-						<label><b>Amount($)</b></label>
-						<input type="number" class="form-control" name="amount" required>
-					</div>
+			<div class="col-sm-6">
+				<div class="form-group">
+					<label><b>Department</b></label>
+					<input type="text" class="form-control" name="applicant_department" id="applicant_department" required oninput="storeFormData('applicant_department')">
 				</div>
-				
-				<div class="col-sm-6">
-					<div class="form-group">
-						<label><b>Approved by </b></label>
-						<input type="text" class="form-control" name="approved_by" required>
-					</div>
-				</div>
+			</div>
 
-				<div class="col-sm-6">
-					<div class="form-group">
-						<label><b>Name of Vendor</b></label>
-						<input type="text" class="form-control" name="name_of_vendor" required>
-					</div>
+			<div class="col-sm-6">
+				<div class="form-group">
+					<label><b>Date of purchase</b></label>
+					<input type="text" class="form-control datepicker" name="date_of_purchase" id="date_of_purchase" required oninput="storeFormData('date_of_purchase')">
 				</div>
+			</div>
 
-				<div class="col-sm-6">
-					<div class="form-group">
-						<label><b>Vendor’s contact number</b></label>
-						<input type="text" class="form-control" name="vendor_contact_number" required>
-					</div>
+			<div class="col-sm-6">
+				<div class="form-group">
+					<label><b>Amount($)</b></label>
+					<input type="number" class="form-control" name="amount" id="amount" required oninput="storeFormData('amount')">
 				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="form-group">
+					<label><b>Approved by </b></label>
+					<input type="text" class="form-control" name="approved_by" id="approved_by" required oninput="storeFormData('approved_by')">
+				</div>
+			</div>
 
-				<div class="col-sm-6">
-					<div class="form-group">
-						<label><b>Category</b></label>
-						<select name="category" class="form-control" id="">
-							<option value="">Please select category</option>
-							<option value="1">option 1</option>
-							<option value="2">option 2</option>
-						</select>
-					</div>
+			<div class="col-sm-6">
+				<div class="form-group">
+					<label><b>Name of Vendor</b></label>
+					<input type="text" class="form-control" name="name_of_vendor" id="name_of_vendor" required oninput="storeFormData('name_of_vendor')">
 				</div>
+			</div>
 
-				<div class="col-sm-6">
-					<div class="form-group">
-						<label><b>Sub-Category</b></label>
-						<select name="sub_category" class="form-control" id="">
-							<option value="">Please select sub-category</option>
-							<option value="1">option 1</option>
-							<option value="2">option 2</option>
-						</select>
-					</div>
+			<div class="col-sm-6">
+				<div class="form-group">
+					<label><b>Vendor’s contact number</b></label>
+					<input type="text" class="form-control" name="vendor_contact_number" id="vendor_contact_number" required oninput="storeFormData('vendor_contact_number')">
 				</div>
+			</div>
+
+			<div class="col-sm-6">
+				<div class="form-group">
+					<label><b>Category</b></label>
+					<select name="category" class="form-control" id="category" onchange="storeFormData('category')">
+						<option value="">Please select category</option>
+						<option value="1">option 1</option>
+						<option value="2">option 2</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="col-sm-6">
+				<div class="form-group">
+					<label><b>Sub-Category</b></label>
+					<select name="sub_category" class="form-control" id="sub_category" onchange="storeFormData('sub_category')">
+						<option value="">Please select sub-category</option>
+						<option value="1">option 1</option>
+						<option value="2">option 2</option>
+					</select>
+				</div>
+			</div>
+
 
 				<!-- <div class="col-sm-6">
 					<div class="form-group">
@@ -400,7 +398,12 @@ if(!isset($_SESSION['email'])){
 
 		$flag = 1;
 		if ($flag == 1) {
-			mysqli_query($con, $query);
+			$checkin = mysqli_query($con, $query);
+			if ($checkin) {
+				session_destroy();
+			} else {
+				echo "Error: " . mysqli_error($con);
+			}
 			echo mysqli_error($con);
 			$application_id = mysqli_insert_id($con);
 
@@ -431,6 +434,50 @@ if(!isset($_SESSION['email'])){
 	}
 
 	?>
+	<script>
+    var formData = {};
+    function storeFormData() {
+        formData.applicant_first_name = document.getElementById("applicant_first_name").value;
+        formData.mobile_number = document.getElementById("mobile_number").value;
+        formData.applicant_email_address = document.getElementById("applicant_email_address").value;
+        formData.applicant_department = document.getElementById("applicant_department").value;
+        formData.date_of_purchase = document.getElementById("date_of_purchase").value;
+        formData.amount = document.getElementById("amount").value;
+        formData.approved_by = document.getElementById("approved_by").value;
+        formData.name_of_vendor = document.getElementById("name_of_vendor").value;
+        formData.vendor_contact_number = document.getElementById("vendor_contact_number").value;
+        formData.category = document.getElementById("category").value;
+        formData.sub_category = document.getElementById("sub_category").value;
+        formData.sub_category = document.getElementById("sub_category").value;
+
+        sessionStorage.setItem('form_data', JSON.stringify(formData));
+    }
+
+    function loadFormData() {
+        var storedFormData = sessionStorage.getItem('form_data');
+        if (storedFormData) {
+            formData = JSON.parse(storedFormData);
+
+            document.getElementById("applicant_first_name").value = formData.applicant_first_name;
+            document.getElementById("mobile_number").value = formData.mobile_number;
+            document.getElementById("applicant_email_address").value = formData.applicant_email_address;
+            document.getElementById("applicant_department").value = formData.applicant_department;
+            document.getElementById("date_of_purchase").value = formData.date_of_purchase;
+            document.getElementById("amount").value = formData.amount;
+            document.getElementById("approved_by").value = formData.approved_by;
+            document.getElementById("name_of_vendor").value = formData.name_of_vendor;
+            document.getElementById("vendor_contact_number").value = formData.vendor_contact_number;
+            document.getElementById("category").value = formData.category;
+            document.getElementById("sub_category").value = formData.sub_category;
+
+        }
+    }
+
+    window.onload = function() {
+        loadFormData();
+    };
+</script>
+
 </body>
 
 </html>
