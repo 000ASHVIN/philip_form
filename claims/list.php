@@ -189,14 +189,16 @@ if (!isset($_SESSION['email'])) {
                         <th scope="col">Mobile Number</th>
                         <th scope="col">Email Address</th>
                         <th scope="col">Department</th>
-                        <th scope="col">Date of Purchase</th>
+                        <th scope="col">Status</th>
+                        <!-- <th scope="col">Date of Purchase</th>
                         <th scope="col">Amount</th>
-                        
                         <th scope="col">Approved By</th>
                         <th scope="col">Name of Vendor</th>
                         <th scope="col">Vendor’s contact number</th>
                         <th scope="col">Category</th>
-                        <th scope="col">Sub-Category</th>
+                        <th scope="col">Sub-Category</th> -->
+                        <th scope="col">Date Submitted</th>
+                        <th scope="col">Date Updated</th>
                         <th scope="col">Reciept</th>
                         <!-- <th>Action</th> -->
                     </tr>
@@ -210,25 +212,20 @@ if (!isset($_SESSION['email'])) {
                                 <td><?php echo $row->mobile_number ?></td>
                                 <td><?php echo $row->applicant_email_address ?></td>
                                 <td><?php echo $row->applicant_department ?></td>
-                                <td><?php echo $row->date_of_purchase ?></td>
+                                <td><?php echo $row->status ?></td>
+                                <!-- <td><?php echo $row->date_of_purchase ?></td>
                                 <td>$<?php echo $row->amount ?></td>
                                 <td><?php echo $row->approved_by ?></td>
                                 <td><?php echo $row->name_of_vendor ?></td>
-                                <!-- <td>
-                                    <?php
-                                    $interest = explode(',', $row->personal_interest);
-                                    foreach ($interest as $val) {
-                                        echo $val . "<br>";
-                                    }
-                                    ?>
-                                </td> -->
                                 <td><?php echo $row->vendor_contact_number ?></td>
                                 <td><?php echo $row->category ?></td>
-                                <td><?php echo $row->sub_category ?></td>
+                                <td><?php echo $row->sub_category ?></td> -->
                                 <td>
                                     <a href="uploads/reciept/<?php echo $row->link; ?>" class="btn btn-primary" target="_blank">Reciept</a>
                                     <!-- <img src="uploads/img/<?php echo $row->pdf_link; ?>" height="50"> -->
                                 </td>
+                                <td><?php echo $row->created_at ?></td>
+                                <td><?php echo $row->updated_at ?></td>
                                 <!-- <td style="text-align: center;">
                                     <div style="display: inline;">
                                         <a href="update-form.php?id=<?php echo $row->id; ?>" class="btn btn-info mt-2">Edit</a>

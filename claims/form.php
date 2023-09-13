@@ -380,6 +380,7 @@ if(!isset($_SESSION['email'])){
 			$img = $fname . "." . $ext;
 		}
 
+		$time=  date('d-m-Y h:ia');
 
 		$query = "INSERT INTO applicants SET
 			applicant_full_name						= '$applicant_full_name',
@@ -394,7 +395,9 @@ if(!isset($_SESSION['email'])){
 			vendor_contact_number		        = '$vendor_contact_number',
 			category		        = '$category',
 			sub_category		        = '$sub_category',
-			link                                = '$img'";
+			link                                = '$img',
+			created_at		        = '$created_at',
+			updated_at		        = '$updated_at'";
 
 		$flag = 1;
 		if ($flag == 1) {
@@ -410,7 +413,7 @@ if(!isset($_SESSION['email'])){
 			// $query = "select * from `users` where email='". $_SESSION['email'] ."' LIMIT 1";
             // $result = mysqli_query($con,$query);
             // $admin = mysqli_fetch_object($result);
-			$time=  date('d-m-Y h:ia');
+
 			// $activity_query = "INSERT INTO activities SET
 			// 	admin_id						= '$admin->id',
 			// 	applicant_id					= '$application_id',
@@ -420,12 +423,11 @@ if(!isset($_SESSION['email'])){
 			// mysqli_query($con, $activity_query);
 
 			$ip_address    = getIPAddress();
-            $check_in_time = $time;
 
 			$query = "INSERT INTO entries SET
         		applicant_id = '$application_id',
 				ip_address = '$ip_address',
-				check_in_time = '$check_in_time'";
+				check_in_time = '$time'";
             
             $result = mysqli_query($con, $query);
 
