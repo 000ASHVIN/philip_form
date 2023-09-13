@@ -3,8 +3,16 @@ include('config.php');
 // error_reporting(E_ALL);
 // ini_set('display_errors', '1');
 
-if(!isset($_SESSION['email'])){
-	// header('location:login.php');
+$created_by = 0;
+$admin = 0;
+if(isset($_SESSION['email']) && $_SESSION['email']) {
+    $query = "select * from `users` where email='". $_SESSION['email'] ."' LIMIT 1";
+    $result = mysqli_query($con,$query);
+    $admin = mysqli_fetch_object($result);
+
+    if($admin) {
+        $created_by = $admin->id;
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -119,11 +127,7 @@ if(!isset($_SESSION['email'])){
 
 	<!-- </div> -->
 
-		<div class="title">
-			<!-- <h4>NATRAHEA</h4> -->
-			<img src="logo/natrahea.jpg" alt="" style="max-width: 180px;">
-			<!-- <a href="logout.php" class="btn btn-primary logout">Logout</a> -->
-		</div>
+	<?php include('header.php'); ?>
 		
 	
 	<div class="header">
@@ -150,6 +154,22 @@ if (isset($_GET['id'])) {
             $personal_interest1 = explode(',', $personal_interest);
 
         ?>
+
+			<?php if($admin) { ?>
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label><b>Status</b></label>
+							<select name="status" class="form-control" >
+								<option value="Completed"<?php if($row['status'] == 'Completed') echo ' selected="selected"'; ?>>Completed</option>
+								<option value="Processing"<?php if($row['status'] == 'Processing') echo ' selected="selected"'; ?>>Processing</option>
+								<option value="Processed"<?php if ($row['status'] == 'Processed') echo ' selected="selected"'; ?>>Processed</option>
+								<option value="Rejected"<?php if ($row['status'] == 'Rejected') echo ' selected="selected"'; ?>>Rejected</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			<?php } ?>
             <div class="row">
 				<div class="col-sm-6">
 					<div class="form-group">
@@ -246,7 +266,7 @@ if (isset($_GET['id'])) {
 					<div class="form-group">
 						<label><b>Invoice / Reciept</b></label>
 						<div class="file-input">
-                            <span><?= $row['link']; ?> </span>
+                            <!-- <span><?= $row['link']; ?> </span> -->
 							<input type="file" class="form-control file-input__input " id="img" name="reciept">
                             
 							<label class="file-input__label " for="img">
@@ -324,6 +344,10 @@ if (isset($_GET['id'])) {
 		$vendor_contact_number = $_POST['vendor_contact_number'];
 		$category = $_POST['category'];
 		$sub_category = $_POST['sub_category'];
+		$status = $row['status'];
+		if (isset($_POST['status'])) {
+			$status = $_POST['status'];
+		}
 		$personal_interests = NULL;
 		if(isset($_POST['personal_interest'])){
 			$personal_interests = $_POST['personal_interest'];
@@ -369,14 +393,16 @@ if (isset($_GET['id'])) {
 			vendor_contact_number		        = '$vendor_contact_number',
 			category		        = '$category',
 			sub_category		        = '$sub_category',
-			link                                = '$img'";
+			link                                = '$img',
+			status                                = '$status',
+			updated_at = '$time'";
 		
         $query .= " WHERE id = $id";
 		$flag = 1;
 		if ($flag == 1) {
 			$checkin = mysqli_query($con, $query);
 			if ($checkin) {
-				session_destroy();
+				// session_destroy();
 			} else {
 				echo "Error: " . mysqli_error($con);
 			}
@@ -390,7 +416,7 @@ if (isset($_GET['id'])) {
             
             $result = mysqli_query($con, $query);
 
-			echo '<script>alert("Customer Check In Successfully");window.location.href="list.php";</script>';
+			echo '<script>alert("Reciept Updated Successfully");window.location.href="list.php";</script>';
 		}
 	}
 

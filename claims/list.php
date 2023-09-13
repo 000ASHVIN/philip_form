@@ -189,6 +189,12 @@ if(isset($_SESSION['email']) && $_SESSION['email']) {
         $dir = str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']);
 
         ?>
+        <div class="d-flex justify-content-end mb-3">
+            <a href="form.php" class="btn btn-info d-flex align-items-center">
+                <svg xmlns="http://www.w3.org/2000/svg"  height="20px" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16"> <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/> </svg>
+                <span>Create</span>
+            </a>
+        </div>
         <div class="">
             <table id="myTable" class="table table-bordered table-striped table-hover">
                 <thead>
@@ -220,7 +226,15 @@ if(isset($_SESSION['email']) && $_SESSION['email']) {
                                 <td><?php echo $row->mobile_number ?></td>
                                 <td><?php echo $row->applicant_email_address ?></td>
                                 <td><?php echo $row->applicant_department ?></td>
-                                <td><?php echo $row->status ?></td>
+                                <?php 
+                                    $text = 'text-info';
+                                    if($row->status == 'Processed') {
+                                        $text = 'text-success';
+                                    } elseif($row->status == 'Rejected') {
+                                        $text = 'text-danger';
+                                    }
+                                ?>
+                                <td class="<?php echo $text; ?>"><?php echo $row->status ?></td>
                                 <!-- <td><?php echo $row->date_of_purchase ?></td>
                                 <td>$<?php echo $row->amount ?></td>
                                 <td><?php echo $row->approved_by ?></td>
@@ -228,10 +242,7 @@ if(isset($_SESSION['email']) && $_SESSION['email']) {
                                 <td><?php echo $row->vendor_contact_number ?></td>
                                 <td><?php echo $row->category ?></td>
                                 <td><?php echo $row->sub_category ?></td> -->
-                                <td>
-                                    <a href="uploads/reciept/<?php echo $row->link; ?>" class="btn btn-primary" target="_blank">Reciept</a>
-                                    <!-- <img src="uploads/img/<?php echo $row->pdf_link; ?>" height="50"> -->
-                                </td>
+                                
                                 <td><?php echo $row->created_at ?></td>
                                 <td><?php echo $row->updated_at ?></td>
                                 <!-- <td style="text-align: center;">
@@ -242,7 +253,11 @@ if(isset($_SESSION['email']) && $_SESSION['email']) {
                                     </div>
                                 </td> -->
                                 <td>
-                                     <a href="form-update.php?id=<?php echo $row->id; ?>" class="btn btn-primary" target="_blank">Update</a>
+                                    <a href="uploads/reciept/<?php echo $row->link; ?>" class="btn btn-primary" target="_blank">Reciept</a>
+                                    <!-- <img src="uploads/img/<?php echo $row->pdf_link; ?>" height="50"> -->
+                                </td>
+                                <td>
+                                     <a href="form-update.php?id=<?php echo $row->id; ?>" class="btn btn-primary">Update</a>
                                 </td>
 
                             </tr>

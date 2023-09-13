@@ -438,7 +438,7 @@ if(!isset($_SESSION['email'])){
             
             $result = mysqli_query($con, $query);
 
-			echo '<script>sessionStorage.removeItem("form_data");alert("Customer Check In Successfully");window.location.href="list.php";</script>';
+			echo '<script>sessionStorage.removeItem("form_data");alert("Reciept Created Successfully");window.location.href="list.php";</script>';
 		}
 	}
 
