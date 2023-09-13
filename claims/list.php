@@ -3,7 +3,7 @@ include('config.php');
 // error_reporting(E_ALL);
 // ini_set('display_errors', '1');
 if (!isset($_SESSION['email'])) {
-    header('location:login.php');
+    // header('location:login.php');
 }
 ?>
 <!DOCTYPE html>
@@ -160,7 +160,7 @@ if (!isset($_SESSION['email'])) {
     <div class="title">
         <!-- <h4>NATRAHEA</h4> -->
         <img src="logo/natrahea.jpg" alt="" style="max-width: 180px;">
-        <a href="logout.php" class="btn btn-primary logout">Logout</a>
+        <!-- <a href="logout.php" class="btn btn-primary logout">Logout</a> -->
     </div>
     <div class="header">
         <img src="logo/NH-Upload-Form-Background.jpg" alt="">
@@ -170,7 +170,7 @@ if (!isset($_SESSION['email'])) {
         </div>
     </div>
     <div class="mx-4">
-        <a href="send-mail.php" class="btn btn-info mb-4" style="float: right;">Send Mail</a>
+        <!-- <a href="send-mail.php" class="btn btn-info mb-4" style="float: right;">Send Mail</a> -->
         <?php
 
         $sql = "select * from applicants";
@@ -186,16 +186,19 @@ if (!isset($_SESSION['email'])) {
                 <thead>
                     <tr>
                         <th scope="col">Name</th>
-                        <th scope="col">Company Designation</th>
-                        <th scope="col">Address</th>
-                        <th scope="col">Postal Code</th>
-                        <th scope="col">Email Address</th>
-                        <th scope="col">Date Of Birth</th>
                         <th scope="col">Mobile Number</th>
-                        <!-- <th scope="col">Personal interests</th> -->
-                        <th scope="col">Notes</th>
-                        <!-- <th scope="col">Image</th> -->
-                        <th>Action</th>
+                        <th scope="col">Email Address</th>
+                        <th scope="col">Department</th>
+                        <th scope="col">Date of Purchase</th>
+                        <th scope="col">Amount</th>
+                        
+                        <th scope="col">Approved By</th>
+                        <th scope="col">Name of Vendor</th>
+                        <th scope="col">Vendor’s contact number</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Sub-Category</th>
+                        <th scope="col">Reciept</th>
+                        <!-- <th>Action</th> -->
                     </tr>
                 </thead>
                 <tbody>
@@ -204,12 +207,13 @@ if (!isset($_SESSION['email'])) {
                     ?>
                             <tr>
                                 <td><?php echo $row->applicant_full_name ?></td>
-                                <td><?php echo $row->applicant_company_designation ?></td>
-                                <td><?php echo $row->applicant_address ?></td>
-                                <td><?php echo $row->applicant_postal_code ?></td>
-                                <td><?php echo $row->applicant_email_address ?></td>
-                                <td><?php echo $row->applicant_date_of_birth ?></td>
                                 <td><?php echo $row->mobile_number ?></td>
+                                <td><?php echo $row->applicant_email_address ?></td>
+                                <td><?php echo $row->applicant_department ?></td>
+                                <td><?php echo $row->date_of_purchase ?></td>
+                                <td>$<?php echo $row->amount ?></td>
+                                <td><?php echo $row->approved_by ?></td>
+                                <td><?php echo $row->name_of_vendor ?></td>
                                 <!-- <td>
                                     <?php
                                     $interest = explode(',', $row->personal_interest);
@@ -218,17 +222,20 @@ if (!isset($_SESSION['email'])) {
                                     }
                                     ?>
                                 </td> -->
-                                <td><?php echo $row->applicant_notes ?></td>
-                                <!-- <td>
-                                    <img src="uploads/img/<?php echo $row->pdf_link; ?>" height="50">
-                                </td> -->
-                                <td style="text-align: center;">
+                                <td><?php echo $row->vendor_contact_number ?></td>
+                                <td><?php echo $row->category ?></td>
+                                <td><?php echo $row->sub_category ?></td>
+                                <td>
+                                    <a href="uploads/reciept/<?php echo $row->link; ?>" class="btn btn-primary" target="_blank">Reciept</a>
+                                    <!-- <img src="uploads/img/<?php echo $row->pdf_link; ?>" height="50"> -->
+                                </td>
+                                <!-- <td style="text-align: center;">
                                     <div style="display: inline;">
                                         <a href="update-form.php?id=<?php echo $row->id; ?>" class="btn btn-info mt-2">Edit</a>
                                         <a href="send-mail-user.php?id=<?php echo $row->id; ?>" class="btn btn-info mt-2">Send Mail</a>
                                         <a href="log.php?id=<?php echo $row->id; ?>" class="btn btn-info mt-2">Log</a>
                                     </div>
-                                </td>
+                                </td> -->
                             </tr>
                     <?php }
                     } ?>

@@ -4,7 +4,7 @@ include('config.php');
 // ini_set('display_errors', '1');
 
 if(!isset($_SESSION['email'])){
-	header('location:login.php');
+	// header('location:login.php');
 }
 ?>
 <!DOCTYPE html>
@@ -16,6 +16,7 @@ if(!isset($_SESSION['email'])){
 
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
 	<!-- jQuery library -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<!-- Popper JS -->
@@ -121,7 +122,7 @@ if(!isset($_SESSION['email'])){
 		<div class="title">
 			<!-- <h4>NATRAHEA</h4> -->
 			<img src="logo/natrahea.jpg" alt="" style="max-width: 180px;">
-			<a href="logout.php" class="btn btn-primary logout">Logout</a>
+			<!-- <a href="logout.php" class="btn btn-primary logout">Logout</a> -->
 		</div>
 		
 	
@@ -138,36 +139,15 @@ if(!isset($_SESSION['email'])){
 			<div class="row">
 				<div class="col-sm-6">
 					<div class="form-group">
-						<label><b>First Name</b></label>
+						<label><b>Name</b></label>
 						<input type="text" class="form-control" name="applicant_first_name" required>
 					</div>
 				</div>
 
 				<div class="col-sm-6">
 					<div class="form-group">
-						<label><b>Last Name</b></label>
-						<input type="text" class="form-control" name="applicant_last_name" required>
-					</div>
-				</div>
-
-				<div class="col-sm-6">
-					<div class="form-group">
-						<label><b>Company Designation</b></label>
-						<input type="text" class="form-control" name="applicant_company_designation" required>
-					</div>
-				</div>
-
-				<div class="col-sm-6">
-					<div class="form-group">
-						<label><b>Address</b></label>
-						<input type="text" class="form-control" name="applicant_address" required>
-					</div>
-				</div>
-
-				<div class="col-sm-6">
-					<div class="form-group">
-						<label><b>Postal Code</b></label>
-						<input type="tel" pattern="[0-9]{6}" class="form-control" name="applicant_postal_code" required>
+						<label><b>Mobile Number</b></label>
+						<input type="text" class="form-control" name="mobile_number" required>
 					</div>
 				</div>
 
@@ -180,16 +160,68 @@ if(!isset($_SESSION['email'])){
 
 				<div class="col-sm-6">
 					<div class="form-group">
-						<label><b>Date Of Birth (DD-MM-YY)</b></label>
-						<input type="tel" pattern="[0-9]{2}-[0-9]{2}-[0-9]{2}" class="form-control" name="applicant_date_of_birth" required>
+						<label><b>Department</b></label>
+						<input type="text" class="form-control" name="applicant_department" required>
+					</div>
+				</div>
+
+				
+
+				<div class="col-sm-6">
+					<div class="form-group">
+						<label><b>Date of purchase</b></label>
+						<input type="text" class="form-control datepicker" name="date_of_purchase" required>
 					</div>
 				</div>
 
 
 				<div class="col-sm-6">
 					<div class="form-group">
-						<label><b>Mobile Number</b></label>
-						<input type="text" class="form-control" name="mobile_number" required>
+						<label><b>Amount($)</b></label>
+						<input type="number" class="form-control" name="amount" required>
+					</div>
+				</div>
+				
+				<div class="col-sm-6">
+					<div class="form-group">
+						<label><b>Approved by </b></label>
+						<input type="text" class="form-control" name="approved_by" required>
+					</div>
+				</div>
+
+				<div class="col-sm-6">
+					<div class="form-group">
+						<label><b>Name of Vendor</b></label>
+						<input type="text" class="form-control" name="name_of_vendor" required>
+					</div>
+				</div>
+
+				<div class="col-sm-6">
+					<div class="form-group">
+						<label><b>Vendor’s contact number</b></label>
+						<input type="text" class="form-control" name="vendor_contact_number" required>
+					</div>
+				</div>
+
+				<div class="col-sm-6">
+					<div class="form-group">
+						<label><b>Category</b></label>
+						<select name="category" class="form-control" id="">
+							<option value="">Please select category</option>
+							<option value="1">option 1</option>
+							<option value="2">option 2</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="col-sm-6">
+					<div class="form-group">
+						<label><b>Sub-Category</b></label>
+						<select name="sub_category" class="form-control" id="">
+							<option value="">Please select sub-category</option>
+							<option value="1">option 1</option>
+							<option value="2">option 2</option>
+						</select>
 					</div>
 				</div>
 
@@ -217,42 +249,37 @@ if(!isset($_SESSION['email'])){
 					</div>
 				</div> -->
 
-				<div class="col-sm-12">
+				<!-- <div class="col-sm-12">
 					<div class="form-group">
 						<label><b>Notes</b></label>
 						<textarea name="applicant_notes" id="applicant_notes" rows="7" class="form-control applicant_notes"></textarea>
 					</div>
-				</div>
+				</div> -->
 			</div>
 
-			<!-- <div class="row">
+			<div class="row">
 				<div class="col-sm-4">
 					<div class="form-group">
-						<label><b>Image</b></label>
+						<label><b>Invoice / Reciept</b></label>
 						<div class="file-input">
-							<input type="file" accept="image/*" class="form-control file-input__input " id="img" name="img" required>
+							<input type="file" class="form-control file-input__input " id="img" name="reciept" required>
 							<label class="file-input__label " for="img">
 								<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="upload" class="svg-inline--fa fa-upload fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
 									<path fill="currentColor" d="M296 384h-80c-13.3 0-24-10.7-24-24V192h-87.7c-17.8 0-26.7-21.5-14.1-34.1L242.3 5.7c7.5-7.5 19.8-7.5 27.3 0l152.2 152.2c12.6 12.6 3.7 34.1-14.1 34.1H320v168c0 13.3-10.7 24-24 24zm216-8v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h136v8c0 30.9 25.1 56 56 56h80c30.9 0 56-25.1 56-56v-8h136c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z"></path>
 								</svg> 
-								 <span>Upload Image</span>
+								 <span>Upload Invoice / Reciept</span>
 							</label>
 						</div>
 					</div>
 					<div id="img-name" class="alert alert-primary" style="display: none;"></div>
 				</div>
-			</div> -->
+			</div>
 
 			<div class="row">
 				<div class="col-sm-12">
 					<div class="form-group" style="display:flex;justify-content:space-between">
 						<div>
-							<!-- <button type="submit" class="btn btn-success" id="send_mail_preview" name="submit">Submit</button> -->
-						</div>
-						
-						
-						<div>
-							<button type="submit" class="btn btn-success mb-5 " id="check_in" name="submit">Check in</button>
+							<button type="submit" class="btn btn-success" id="send_mail_preview" name="submit">Submit</button>
 						</div>
 					</div>
 				</div>
@@ -262,6 +289,8 @@ if(!isset($_SESSION['email'])){
 		</form>
 	</div>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+
 	<script>
 		window.jQuery || document.write('<script src="js/jquery-1.10.2.min.js"><\/script>')
 	</script>
@@ -275,6 +304,11 @@ if(!isset($_SESSION['email'])){
 	<script src="d3.v3.js" charset="utf-8"></script>
 
 	<script>
+		// $( function() {
+			$( ".datepicker" ).datepicker({
+				dateFormat: "dd-mm-yy"
+			});
+		// } );
 		$("#img").change(function() {
 			var text = this.files[0].name + " is selected."
 			$("#img-name").text(text);
@@ -307,13 +341,17 @@ if(!isset($_SESSION['email'])){
 	}
 	if (isset($_POST['submit'])) {
 		$applicant_first_name = $_POST['applicant_first_name'];
-		$applicant_last_name = $_POST['applicant_last_name'];
-		$applicant_company_designation = $_POST['applicant_company_designation'];
-		$applicant_address = $_POST['applicant_address'];
-		$applicant_postal_code = $_POST['applicant_postal_code'];
+		// $applicant_last_name = $_POST['applicant_last_name'];
+		$applicant_department = $_POST['applicant_department'];
+		$date_of_purchase = $_POST['date_of_purchase'];
+		$amount = $_POST['amount'];
 		$applicant_email_address = $_POST['applicant_email_address'];
-		$applicant_date_of_birth = $_POST['applicant_date_of_birth'];
+		$approved_by = $_POST['approved_by'];
 		$mobile_number = $_POST['mobile_number'];
+		$name_of_vendor = $_POST['name_of_vendor'];
+		$vendor_contact_number = $_POST['vendor_contact_number'];
+		$category = $_POST['category'];
+		$sub_category = $_POST['sub_category'];
 		$personal_interests = NULL;
 		if(isset($_POST['personal_interest'])){
 			$personal_interests = $_POST['personal_interest'];
@@ -321,24 +359,24 @@ if(!isset($_SESSION['email'])){
 				$personal_interest = implode(",", $personal_interests);
 			}
 		}
-		$applicant_notes = $_POST['applicant_notes'];
+		// $applicant_notes = $_POST['applicant_notes'];
 		// $applicant_full_name = $_POST['applicant_full_name'];
 		// $mobile_number = $_POST['mobile_number'];
-		$applicant_full_name = $applicant_first_name . ' ' . $applicant_last_name;
+		$applicant_full_name = $applicant_first_name;
 
 		$file_name = str_replace(' ', '-', $applicant_full_name);
 
 		$img = '';
-		$img_dir = 'uploads/img';
+		$img_dir = 'uploads/reciept';
 		if (!file_exists($img_dir)) {
 			mkdir($img_dir, 0777, true);
 		}
 
 
-		if ($_FILES["img"]["tmp_name"]) {
-			$fname = $file_name . '-img-' . strtotime("now");
-			$uploaded_file = $_FILES["img"]["tmp_name"];
-			$ext = pathinfo($_FILES["img"]["name"], PATHINFO_EXTENSION);
+		if ($_FILES["reciept"]["tmp_name"]) {
+			$fname = $file_name . '-reciept-' . strtotime("now");
+			$uploaded_file = $_FILES["reciept"]["tmp_name"];
+			$ext = pathinfo($_FILES["reciept"]["name"], PATHINFO_EXTENSION);
 			$new_file_name = $img_dir . "/" . $fname . '.' . $ext;
 			move_uploaded_file($uploaded_file, $new_file_name);
 			$img = $fname . "." . $ext;
@@ -348,16 +386,17 @@ if(!isset($_SESSION['email'])){
 		$query = "INSERT INTO applicants SET
 			applicant_full_name						= '$applicant_full_name',
 			applicant_first_name					= '$applicant_first_name',
-			applicant_last_name						= '$applicant_last_name',
-			applicant_company_designation			= '$applicant_company_designation',
-			applicant_address						= '$applicant_address',
-			applicant_postal_code					= '$applicant_postal_code',
+			applicant_department			= '$applicant_department',
+			date_of_purchase						= '$date_of_purchase',
+			amount					= '$amount',
 			applicant_email_address					= '$applicant_email_address',
-			applicant_date_of_birth					= '$applicant_date_of_birth',
+			approved_by					= '$approved_by',
 			mobile_number						    = '$mobile_number',
-			personal_interest						= '$personal_interest',
-			applicant_notes						    = '$applicant_notes',
-			pdf_link                                = '$img'";
+			name_of_vendor						= '$name_of_vendor',
+			vendor_contact_number		        = '$vendor_contact_number',
+			category		        = '$category',
+			sub_category		        = '$sub_category',
+			link                                = '$img'";
 
 		$flag = 1;
 		if ($flag == 1) {
@@ -365,17 +404,17 @@ if(!isset($_SESSION['email'])){
 			echo mysqli_error($con);
 			$application_id = mysqli_insert_id($con);
 
-			$query = "select * from `users` where email='". $_SESSION['email'] ."' LIMIT 1";
-            $result = mysqli_query($con,$query);
-            $admin = mysqli_fetch_object($result);
+			// $query = "select * from `users` where email='". $_SESSION['email'] ."' LIMIT 1";
+            // $result = mysqli_query($con,$query);
+            // $admin = mysqli_fetch_object($result);
 			$time=  date('d-m-Y h:ia');
-			$activity_query = "INSERT INTO activities SET
-				admin_id						= '$admin->id',
-				applicant_id					= '$application_id',
-				created_at                     =  '$time',
-				type						= 'created'";
+			// $activity_query = "INSERT INTO activities SET
+			// 	admin_id						= '$admin->id',
+			// 	applicant_id					= '$application_id',
+			// 	created_at                     =  '$time',
+			// 	type						= 'created'";
 				
-			mysqli_query($con, $activity_query);
+			// mysqli_query($con, $activity_query);
 
 			$ip_address    = getIPAddress();
             $check_in_time = $time;
@@ -387,7 +426,7 @@ if(!isset($_SESSION['email'])){
             
             $result = mysqli_query($con, $query);
 
-			echo '<script>alert("Customer Check In Successfully");window.location.href="entry.php";</script>';
+			echo '<script>alert("Customer Check In Successfully");window.location.href="list.php";</script>';
 		}
 	}
 
