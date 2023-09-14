@@ -229,7 +229,7 @@ if (isset($_GET['id'])) {
 
 			<div class="col-sm-6">
 				<div class="form-group">
-					<label><b>Vendor’s contact number</b></label>
+					<label><b>Vendor's contact number</b></label>
 					<input type="text" class="form-control" name="vendor_contact_number" id="vendor_contact_number" required value="<?= $row['vendor_contact_number']; ?>" >
 				</div>
 			</div>

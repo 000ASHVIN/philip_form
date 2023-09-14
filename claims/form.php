@@ -189,7 +189,7 @@ if(!isset($_SESSION['email'])){
 
 			<div class="col-sm-6">
 				<div class="form-group">
-					<label><b>Vendor’s contact number</b></label>
+					<label><b>Vendor's contact number</b></label>
 					<input type="text" class="form-control" name="vendor_contact_number" id="vendor_contact_number" required oninput="storeFormData('vendor_contact_number')">
 				</div>
 			</div>
